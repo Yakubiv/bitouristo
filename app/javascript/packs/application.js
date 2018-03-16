@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import DashboardComponent from '../components/DashboardComponent';
+import App from '../components/App';
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.body.appendChild(document.createElement('div'));
-  render(<DashboardComponent/>, container);
+  render(<App/>, container);
 });
