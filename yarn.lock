@@ -1987,6 +1987,10 @@ es6-weak-map@^2.0.1:
     es6-iterator "^2.0.1"
     es6-symbol "^3.1.1"
 
+es6@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/es6/-/es6-0.0.7.tgz#3b2851afeea60db16cf569d56066daa0f3974676"
+
 escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
