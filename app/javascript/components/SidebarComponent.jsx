@@ -7,7 +7,6 @@ export default class SidebarComponent extends React.Component {
   }
 
   _setIcon(item) {
-    console.log(item);
     const listIcons = {
       "Dashboard": 'fa fa-suitcase',
       "Images": 'fa fa-camera',
