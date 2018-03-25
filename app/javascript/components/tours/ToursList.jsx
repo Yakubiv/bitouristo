@@ -9,7 +9,7 @@ class ToursList extends React.Component {
       return (
         <div className="col-sm-3" key={index}>
           <div className="card">
-            <img className="card-img-top" src={item.cover} />
+            <img src={item.cover} className="card-img-top" />
             <div className="card-body">
               <h5 className="card-title" onClick={() => setComponent(item.id)}>{item.name}</h5>
               <p className="card-text">

@@ -1,10 +1,10 @@
 import React from 'react'
-import DashboardComponent from './DashboardComponent'
+import WrapperComponent from './WrapperComponent'
 
 class App extends React.Component {
   render () {
     return (
-      <DashboardComponent />
+      <WrapperComponent />
     )
   }
 }

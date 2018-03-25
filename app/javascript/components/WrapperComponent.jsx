@@ -25,6 +25,7 @@ export default class DashboardComponent extends React.Component {
     this.setState ({
       currentComponent: component
     })
+    localStorage.setItem('currentComponent', component)
   }
 
   _selectComponent (component) {
@@ -36,6 +37,14 @@ export default class DashboardComponent extends React.Component {
       "Rewards": <Rewards />
     }
     return availableComponent[component]
+  }
+
+  _activeComponent () {
+    if (localStorage.getItem('currentComponent') === null) {
+      return this.state.currentComponent;
+    } else {
+      return localStorage.getItem('currentComponent');
+    }
   }
 
   render() {
@@ -58,7 +67,7 @@ export default class DashboardComponent extends React.Component {
               </div>
             </div>
             <main className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-              {this._selectComponent(this.state.currentComponent)}
+              {this._selectComponent(this._activeComponent())}
             </main>
           </div>
         </div>
