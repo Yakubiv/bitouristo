@@ -22,11 +22,13 @@ class ToursList extends React.Component {
               </p>
               <p className="card-text">
                 <span className="fa fa-money-bill-alt m-r"></span>
-                {item.price}
+                ${item.price}
               </p>
               <p className="card-text">
                 <span className="fa fa-location-arrow m-r"></span>
-                {item.places}
+                {item.places.map((item, index) => {
+                  return <span key={index} className="location-item">{item}</span>
+                })}
               </p>
             </div>
           </div>
