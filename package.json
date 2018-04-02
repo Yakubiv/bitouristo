@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
     "es6": "0.0.7",
+    "material-ui": "^0.20.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.0.0",
     "react": "^16.2.0",

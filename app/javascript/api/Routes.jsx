@@ -1,6 +1,6 @@
 const RoutesURL = {
   // Navigational routes
-  get_tours:           () => '/api/tours'
+  get_tours:  (name: string = '') => '/api/tours?name=' + name
 };
 
 export default RoutesURL;

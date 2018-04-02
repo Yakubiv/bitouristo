@@ -43,7 +43,9 @@ class ToursList extends React.Component {
     }
     return (
       <div>
-        <ToursFilter />
+        <ToursFilter
+          name={this.props.name}
+          handleInputChange={this.props.handleInputChange} />
         <div className="row">
           {this._displayTours()}
         </div>

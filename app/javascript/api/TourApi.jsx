@@ -7,14 +7,14 @@ if( process.env.REACT_APP_API_URL ) {
 }
 
 const requests = {
-  get: () => {
+  get: (url: sting, body: any) => {
     return axios.get(API_URL + '/tours')
   }
 };
 
 const TourAPI = {
-  getTours: () => {
-    return requests.get(RoutesURL.get_tours(), {});
+  getTours: (name: string = '') => {
+    return requests.get(RoutesURL.get_tours(), { name: name });
   }
 };
 

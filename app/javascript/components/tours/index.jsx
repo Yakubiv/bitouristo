@@ -10,15 +10,18 @@ class Tours extends React.Component {
       isLoaded: false,
       tours: [],
       currentComponent: "ToursList",
-      activeTourId: null
+      activeTourId: null,
+      name: '',
+      price: ''
     }
     this._currentToursComponent = this._currentToursComponent.bind(this)
     this._setTourComponent = this._setTourComponent.bind(this)
     this._setToursComponent = this._setToursComponent.bind(this)
+    this._handleInputChange = this._handleInputChange.bind(this)
   }
 
   componentWillMount () {
-    TourAPI.getTours().then((res) => {
+    TourAPI.getTours(this.state.name).then((res) => {
       this.setState ({
         isLoaded: true,
         tours: res.data
@@ -42,6 +45,16 @@ class Tours extends React.Component {
     })
   }
 
+  _handleInputChange (event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   _setTour () {
     const { tours } = this.state.tours;
     console.log(this.state.activeTourId);
@@ -50,7 +63,11 @@ class Tours extends React.Component {
 
   _currentToursComponent (component) {
     const componentList = {
-      "ToursList": <ToursList setComponent={this._setTourComponent} tours={this.state.tours} />,
+      "ToursList": <ToursList
+                      setComponent={this._setTourComponent}
+                      tours={this.state.tours}
+                      name={this.state.name}
+                      handleInputChange={this._handleInputChange} />,
       "Tour": <Tour tour={this._setTour()} setComponent={this._setToursComponent}/>
     }
     return componentList[component];
