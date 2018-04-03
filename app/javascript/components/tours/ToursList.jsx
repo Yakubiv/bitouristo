@@ -2,9 +2,18 @@ import React from 'react';
 import ToursFilter from './ToursFilter';
 
 class ToursList extends React.Component {
+  _noTours () {
+    return (
+      <div>
+        No tours found
+      </div>
+    );
+  }
   _displayTours () {
-    const { tours } = this.props.tours
-    const { setComponent } = this.props
+    const { tours, setComponent } = this.props
+    if (tours.length === 0) {
+      return this._noTours();
+    }
     return tours.map((item, index) => {
       return (
         <div className="col-sm-3" key={index}>
@@ -38,9 +47,6 @@ class ToursList extends React.Component {
   }
 
   render () {
-    if (this.props.tours.lenght === 0) {
-      return null;
-    }
     return (
       <div>
         <ToursFilter

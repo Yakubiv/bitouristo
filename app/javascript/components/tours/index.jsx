@@ -24,7 +24,7 @@ class Tours extends React.Component {
     TourAPI.getTours(this.state.name).then((res) => {
       this.setState ({
         isLoaded: true,
-        tours: res.data
+        tours: res.data.tours
       });
     }).catch((err) => {
       console.log(err);
@@ -55,17 +55,44 @@ class Tours extends React.Component {
     })
   }
 
+  _searchFilter = (value) => {
+    const { tours } = this.state;
+    let reg = new RegExp(this.state.name, "i");
+    console.log(tours);
+    let resultTours = tours.filter((item) => {
+      if (item.name.match(reg, "i")) {
+        return item;
+      } else {
+        return false;
+      }
+    })
+
+    if (resultTours.length > 0) {
+      return resultTours;
+    } else {
+      return [];
+    }
+  }
+
   _setTour () {
-    const { tours } = this.state.tours;
-    console.log(this.state.activeTourId);
-    return tours.find((item) => {return item.id == this.state.activeTourId});
+    const { tours } = this.state;
+
+    if (tours.length > 0) {
+      return tours.find((item) => {return item.id == this.state.activeTourId});
+    } else {
+      return false;
+    }
+  }
+
+  _filteredTours () {
+    return this._searchFilter(this.state.name);
   }
 
   _currentToursComponent (component) {
     const componentList = {
       "ToursList": <ToursList
                       setComponent={this._setTourComponent}
-                      tours={this.state.tours}
+                      tours={this._filteredTours()}
                       name={this.state.name}
                       handleInputChange={this._handleInputChange} />,
       "Tour": <Tour tour={this._setTour()} setComponent={this._setToursComponent}/>
