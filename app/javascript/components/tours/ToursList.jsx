@@ -51,6 +51,9 @@ class ToursList extends React.Component {
       <div>
         <ToursFilter
           name={this.props.name}
+          minPrice={this.props.minPrice}
+          maxPrice={this.props.maxPrice}
+          date={this.props.date}
           handleInputChange={this.props.handleInputChange} />
         <div className="row">
           {this._displayTours()}

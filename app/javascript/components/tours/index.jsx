@@ -12,7 +12,9 @@ class Tours extends React.Component {
       currentComponent: "ToursList",
       activeTourId: null,
       name: '',
-      price: ''
+      minPrice: 0,
+      maxPrice: 10000,
+      date: null
     }
     this._currentToursComponent = this._currentToursComponent.bind(this)
     this._setTourComponent = this._setTourComponent.bind(this)
@@ -45,22 +47,18 @@ class Tours extends React.Component {
     })
   }
 
-  _handleInputChange (event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
+  _handleInputChange (name, value) {
     this.setState({
       [name]: value
     })
   }
 
-  _searchFilter = (value) => {
-    const { tours } = this.state;
-    let reg = new RegExp(this.state.name, "i");
-    console.log(tours);
+  _searchFilter () {
+    const { tours, minPrice, maxPrice, name, date } = this.state;
+    let reg = new RegExp(name, "i");
+    console.log(minPrice);
     let resultTours = tours.filter((item) => {
-      if (item.name.match(reg, "i")) {
+      if (item.name.match(reg, "i") && (item.price > minPrice) && (item.price < maxPrice)) {
         return item;
       } else {
         return false;
@@ -85,7 +83,7 @@ class Tours extends React.Component {
   }
 
   _filteredTours () {
-    return this._searchFilter(this.state.name);
+    return this._searchFilter();
   }
 
   _currentToursComponent (component) {
@@ -94,6 +92,9 @@ class Tours extends React.Component {
                       setComponent={this._setTourComponent}
                       tours={this._filteredTours()}
                       name={this.state.name}
+                      maxPrice={this.state.maxPrice}
+                      minPrice={this.state.minPrice}
+                      date={this.state.date}
                       handleInputChange={this._handleInputChange} />,
       "Tour": <Tour tour={this._setTour()} setComponent={this._setToursComponent}/>
     }
